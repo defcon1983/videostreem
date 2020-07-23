@@ -8,8 +8,8 @@ def index(request):
 
 def gen(camera):
 	while True:
-		frame, count = camera.get_frame()
-		print(count)
+		frame, saludo = camera.get_frame()
+		print(saludo)
 		yield ((b'--frame\r\n'
 				b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n'))
 		yield count
