@@ -9,7 +9,7 @@ face_detection_webcam = cv2.CascadeClassifier(os.path.join(
 class VideoCamera(object):
 	def __init__(self):
 		self.video = cv2.VideoCapture(0)
-		self.count=0
+		self.saludo = "hola mundo Django y OpenCV"
 
 	def __del__(self):
 		self.video.release()
@@ -24,8 +24,7 @@ class VideoCamera(object):
 		faces_detected = face_detection_videocam.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
 		for (x, y, w, h) in faces_detected:
 			cv2.rectangle(image, pt1=(x, y), pt2=(x + w, y + h), color=(255, 0, 0), thickness=2)
-			self.count += 1
 		frame_flip = cv2.flip(image,1)
 		ret, jpeg = cv2.imencode('.jpg', frame_flip)
-		#AQUI ME RETORNA UN COUNT, QUE CONTIENE EL CONTADOR DE FRAMES O ROSTROS QUE ESTA OBTENIENDO
-		return (jpeg.tobytes(),self.count)
+		#AQUI ME RETORNA EL SALUDO.
+		return (jpeg.tobytes(),self.saludo)
